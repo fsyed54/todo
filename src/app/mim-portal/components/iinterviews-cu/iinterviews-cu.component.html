@@ -1,0 +1,532 @@
+
+<div class=" header surface-card p-4 shadow-2 border-round">
+    <form [formGroup]="iCreateUpdateForm" (ngSubmit)="onClickSave()">
+        <div class="card">
+            <h4>Candidate Details</h4>
+            <br>
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <label for="c_firstname">Firstname</label>
+                    <input
+                        pInputText
+                        id="c_firstname"
+                        type="text"
+                        formControlName="c_firstname"
+                    />
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="c_lastname">Lastname</label>
+                    <input
+                        pInputText
+                        id="c_lastname"
+                        type="text"
+                        formControlName="c_lastname"
+                    />
+                </div>
+
+                <div class="field col-6">
+                    <label for="c_email">Email</label>
+                    <input
+                        pInputTextarea
+                        id="c_email"
+                        type="text"
+                        formControlName="c_email"
+                    />
+                </div>
+
+                <div class="field col-6">
+                    <label for="c_visa">Visa Status</label>
+                    <input
+                        pInputTextarea
+                        id="c_visa"
+                        type="text"
+                        formControlName="c_visa"
+                    />
+                </div>
+
+                <div class="field col-6">
+                    <label for="c_certifications">Certifications and Achievements</label>
+                    <input
+                        pInputTextarea
+                        id="c_certifications"
+                        type="text"
+                        formControlName="c_certifications"
+                    />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <h4>Interview Details</h4>
+            <br>
+
+            <div class="p-fluid pi-formgrid grid">
+
+                <div class="field col-12 md:col-6">
+                    <label for="r_name">Recruiter name</label>
+                    <input
+                        pInputText
+                        id="r_name"
+                        type="text"
+                        formControlName="r_name"
+                    />
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="r_email">Recruiter Email</label>
+                    <input
+                        pInputText
+                        id="r_email"
+                        type="text"
+                        formControlName="r_email"
+                    />
+                </div>
+
+                <div class="field col-6">
+                    <label for="ir_name">Interviewer name</label>
+                    <input
+                        pInputTextarea
+                        id="ir_name"
+                        type="text"
+                        formControlName="ir_name"
+                    />
+                </div>
+
+                <div class="field col-6">
+                    <label for="i_position">Interview Position</label>
+                    <input
+                        pInputTextarea
+                        id="i_position"
+                        type="text"
+                        formControlName="i_position"
+                    />
+                </div>
+
+                <div class="field col-6">
+                    <label for="i_doi">Date of Interview</label>
+                    <p-calendar
+                        [showIcon]="true"
+                        id="i_doi"
+                        inputId="icon"
+                        formControlName="i_doi"
+                    >
+                    </p-calendar>
+                </div>
+
+                <div class="field col-6">
+                    <label for="i_toi">Time of Interview</label>
+                    <input
+                        pInputTextarea
+                        id="i_toi"
+                        type="time"
+                        formControlName="i_toi"
+                    />
+                </div>
+
+            </div>
+        </div>
+        <div class="card">
+            <h4>Technical Feedback</h4>
+            <br>
+
+            <div class="p-fluid pi-formgrid grid">
+
+                <div class="field col-12 md:col-6">
+                    <label>Frontend skills</label>
+                    <textarea
+                        id="i_frontend_skills"
+                        rows="5"
+                        cols="30"
+                        pInputTextarea
+                        placeholder="Your Message"
+                        formControlName="i_frontend_skills"
+                    ></textarea>
+
+                    <!--                    [autoResize]="true"-->
+                    <!--                    <br>-->
+
+                    <!--                    <textarea-->
+                    <!--                        appScrollResizable-->
+                    <!--                        [resizable]="resizable"-->
+                    <!--                        rows="5"-->
+                    <!--                        cols="30"-->
+                    <!--                        placeholder="Your Message"-->
+                    <!--                    ></textarea>-->
+
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="i_backend_skills">Backend skills</label>
+                    <textarea
+                        rows="5"
+                        id="i_backend_skills"
+                        cols="30"
+                        placeholder="Your Message"
+                        pInputTextarea
+                        formControlName="i_backend_skills"
+                    ></textarea>
+                </div>
+
+                <div class="field col-6">
+                    <label for="i_cloud_skills">Cloud skills</label>
+                    <textarea
+                        rows="5"
+                        id="i_cloud_skills"
+                        cols="30"
+                        placeholder="Your Message"
+                        pInputTextarea
+                        formControlName="i_cloud_skills"
+                    ></textarea>
+                </div>
+
+                <div class="field col-6">
+                    <label for="i_linux_devops_skills">Linux & DevOps skills</label>
+                    <textarea
+                        rows="5"
+                        id="i_linux_devops_skills"
+                        cols="30"
+                        placeholder="Your Message"
+                        pInputTextarea
+                        formControlName="i_linux_devops_skills"
+                    ></textarea>
+                </div>
+
+
+                <div class="field col-6">
+                    <label for="i_overall_feedback">Overall Technical feedback</label>
+                    <textarea
+                        rows="5"
+                        id="i_overall_feedback"
+                        cols="30"
+                        placeholder="Your Message"
+                        pInputTextarea
+                        formControlName="i_overall_feedback"
+                    ></textarea>
+                </div>
+
+                <div class="field col-6">
+                    <label for="i_candidate_behavior_skills">Candidate Behaviour</label>
+                    <textarea
+                        rows="5"
+                        id="i_candidate_behavior_skills"
+                        cols="30"
+                        placeholder="Your Message"
+                        pInputTextarea
+                        formControlName="i_candidate_behavior_skills"
+                    ></textarea>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="card">
+            <h4>Overall Technical Ratings</h4>
+            <br>
+
+            <div class="p-fluid pi-formgrid grid">
+
+                <div class="field col-12 md:col-6">
+                    <label for="i_frontend_skills_rating">Frontend skills</label>
+                    <p-rating
+                        id="i_frontend_skills_rating"
+                        formControlName="i_frontend_skills_rating"
+                    ></p-rating>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="i_backend_skills_rating">Backend skills</label>
+                    <p-rating
+                        id="i_backend_skills_rating"
+                        formControlName="i_backend_skills_rating"
+                    ></p-rating>
+                </div>
+
+                <div class="field col-6">
+                    <label for="i_cloud_skills_rating">Cloud skills</label>
+                    <p-rating
+                        id="i_cloud_skills_rating"
+                        formControlName="i_cloud_skills_rating"
+                    ></p-rating>
+                </div>
+
+                <div class="field col-6">
+                    <label for="i_linux_devops_skills_rating">Linux & DevOps skills</label>
+                    <p-rating
+                        id="i_linux_devops_skills_rating"
+                        formControlName="i_linux_devops_skills_rating"
+                    ></p-rating>
+                </div>
+
+                <div class="field col-6">
+                    <label for="i_candidate_business_knowledge_rating">Business Knowledge</label>
+                    <p-rating
+                        id="i_candidate_business_knowledge_rating"
+                        formControlName="i_candidate_business_knowledge_rating"
+                    ></p-rating>
+                </div>
+
+            </div>
+        </div>
+        <div class="card">
+            <h4>Interview Outcomes</h4>
+            <br>
+            <div class="p-fluid pi-formgrid grid">
+
+                <div class="field col-12 md:col-6">
+                    <label for="i_top_three_skills">Candidate top three skills </label>
+                    <p-chips
+                        id="i_top_three_skills"
+                        [placeholder]=" 'You can enter multiple values here, each followed by enter'"
+                        formControlName="i_top_three_skills"
+                    ></p-chips>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="i_final_result">Result </label>
+                    <input
+                        pInputTextarea
+                        id="i_final_result"
+                        type="text"
+                        formControlName="i_final_result"
+                    />
+<!--                    <p-dropdown-->
+<!--                        [options]="resultOutcomes"-->
+<!--                        optionLabel="name"-->
+<!--                        [(ngModel)]="selectedResult"-->
+<!--                        [placeholder]="'Select an option'"-->
+<!--                    ></p-dropdown>-->
+                </div>
+            </div>
+        </div>
+        <div class="field col-12 md:col-12">
+
+            <button
+                pButton
+                pRipple
+                type="button"
+                label="Cancel"
+                (click)="onClickCancel()"
+                class="p-button-raised p-button-danger mr-2 mb-2"
+            ></button>
+
+            <button
+                pButton
+                pRipple
+                type="submit"
+                label="Save"
+                class="p-button-raised mr-2 mb-2"
+            ></button>
+
+        </div>
+    </form>
+</div>
+<br>
+<hr>
+<!--<div class=" header surface-card p-4 shadow-2 border-round">-->
+<!--        <div class="col-12">-->
+<!--            <div class="card">-->
+
+<!--                <h4>Candidate Details</h4>-->
+<!--                <br>-->
+
+<!--                <div class="p-fluid p-formgrid grid">-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label for="c-firstname">Firstname</label>-->
+<!--                        <input pInputText id="c-firstname" type="text" />-->
+
+<!--                    </div>-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label for="c-lastname">Lastname</label>-->
+<!--                        <input pInputText id="c-lastname" type="text" />-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="c-email">Email</label>-->
+<!--                        <input pInputTextarea id="c-email" type="text"/>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="c-visa">Visa Status</label>-->
+<!--                        <input pInputTextarea id="c-visa" type="text" />-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="c-certifications">Certifications and Achievements</label>-->
+<!--                        <input pInputTextarea id="c-certifications" type="text" />-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <h4>Interview Details</h4>-->
+<!--                <br>-->
+
+<!--                <div class="p-fluid pi-formgrid grid">-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label for="r-name">Recruiter name</label>-->
+<!--                        <input pInputText id="r-name" type="text" />-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label for="r-email">Recruiter Email</label>-->
+<!--                        <input pInputText id="r-email" type="text" />-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="ir-name">Interviewer name</label>-->
+<!--                        <input pInputTextarea id="ir-name" type="text" />-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="i-position">Interview Position</label>-->
+<!--                        <input pInputTextarea id="i-position" type="text" />-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label>Date of Interview</label>-->
+<!--                        <p-calendar  [showIcon]="true" inputId="icon"></p-calendar>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="i-toi">Time of Interview</label>-->
+<!--                        <input pInputTextarea id="i-toi" type="time" />-->
+<!--                    </div>-->
+
+
+
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <h4>Technical Feedback</h4>-->
+<!--                <br>-->
+
+<!--                <div class="p-fluid pi-formgrid grid">-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label>Frontend skills</label>-->
+<!--                        <textarea-->
+<!--                            id="i-frontend-skills"-->
+<!--                            rows="5"-->
+<!--                            cols="30"-->
+<!--                            pInputTextarea-->
+<!--                            placeholder="Your Message"-->
+<!--                        ></textarea>-->
+
+<!--                        &lt;!&ndash;                    [autoResize]="true"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                    <br>&ndash;&gt;-->
+
+<!--                        &lt;!&ndash;                    <textarea&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        appScrollResizable&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        [resizable]="resizable"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        rows="5"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        cols="30"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        placeholder="Your Message"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                    ></textarea>&ndash;&gt;-->
+
+<!--                    </div>-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label for="i-backend-skills">Backend skills</label>-->
+<!--                        <textarea rows="5" id="i-backend-skills" cols="30" placeholder="Your Message" pInputTextarea></textarea>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="i-cloud-skills">Cloud skills</label>-->
+<!--                        <textarea rows="5" id="i-cloud-skills" cols="30" placeholder="Your Message" pInputTextarea></textarea>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="i-linuxdevops-skills">Linux & DevOps skills</label>-->
+<!--                        <textarea rows="5" id="i-linuxdevops-skills" cols="30" placeholder="Your Message" pInputTextarea></textarea>-->
+<!--                    </div>-->
+
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="i-overall-feedback">Overall Technical feedback</label>-->
+<!--                        <textarea rows="5" id="i-overall-feedback" cols="30" placeholder="Your Message" pInputTextarea></textarea>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="i-candidate-behavior-skills">Candidate Behaviour</label>-->
+<!--                        <textarea rows="5" id="i-candidate-behavior-skills" cols="30" placeholder="Your Message" pInputTextarea></textarea>-->
+<!--                    </div>-->
+
+
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <h4>Overall Technical Ratings</h4>-->
+<!--                <br>-->
+
+<!--                <div class="p-fluid pi-formgrid grid">-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label for="i-frontend-skills">Frontend skills</label>-->
+<!--                        <p-rating></p-rating>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label for="i-backend-skills">Backend skills</label>-->
+<!--                        <p-rating></p-rating>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="i-cloud-skills">Cloud skills</label>-->
+<!--                        <p-rating></p-rating>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="i-linuxdevops-skills">Linux & DevOps skills</label>-->
+<!--                        <p-rating></p-rating>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-6">-->
+<!--                        <label for="i-candidate-behavior-skills">Business Knowledge</label>-->
+<!--                        <p-rating></p-rating>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <h4>Interview Outcomes</h4>-->
+<!--                <br>-->
+
+<!--                <div class="p-fluid pi-formgrid grid">-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label for="i-backend-skills">Candidate top three skills </label>-->
+<!--                        <p-chips [placeholder]=" 'You can enter multiple values here, each followed by enter'"></p-chips>-->
+<!--                    </div>-->
+
+<!--                    <div class="field col-12 md:col-6">-->
+<!--                        <label for="i-frontend-skills">Result </label>-->
+<!--                        <p-dropdown-->
+<!--                            [options]="resultOutcomes" optionLabel="name" [(ngModel)]="selectedResult" [placeholder]="'Select an option'"></p-dropdown>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="field col-12 md:col-12">-->
+<!--                <button-->
+<!--                    pButton-->
+<!--                    pRipple-->
+<!--                    type="button"-->
+<!--                    label="Cancel"-->
+<!--                    class="p-button-raised p-button-danger mr-2 mb-2"-->
+<!--                ></button>-->
+<!--                <button-->
+<!--                    pButton-->
+<!--                    pRipple-->
+<!--                    type="button"-->
+<!--                    label="Save"-->
+<!--                    class="p-button-raised mr-2 mb-2"-->
+<!--                ></button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--</div>-->
+<hr>

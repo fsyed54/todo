@@ -1,0 +1,65 @@
+
+<br>
+<div class=" header surface-card p-4 shadow-2 border-round">
+
+    <p-button label="Create Interview" severity="secondary" (click)="createInterview()"></p-button>
+    <br><br>
+
+    <p-table
+        [value]="interviewsList"
+        [rowHover]="true"
+        [rows]="20"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[20, 25, 30]"
+        [paginator]="true"
+
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">#</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Candidate Name</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Date of Interview</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Time of Interview</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Interview Panel</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Interview Status</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Onboarding</div>
+                </th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-interview let-rowIndex="rowIndex">
+            <tr class="clickable-row" (click)="onRowClick(interview)">
+
+                <td> {{ getRowIndex(rowIndex) }} </td>
+                <td> {{ interview.candidateFirstName + " " + interview.candidateLastName }} </td>
+                <td> {{ interview.dateOfInterview }} </td>
+                <td> {{ interview.timeOfInterview }}</td>
+                <td> {{ interview.interviewerName}} </td>
+                <td> {{ interview.interviewStatus }} </td>
+                <td>
+                    <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': interview.onboardingStatus, 'text-red-500 pi-times-circle': !interview.onboardingStatus }"></i>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<br>
