@@ -46,7 +46,8 @@ import {IinterviewsDetailsComponent} from "./mim-portal/components/iinterviews-d
                 children: [
                     // {path: '', component: DashboardDemoComponent},
                     // {path: '', component: IlandingPageComponent},
-                    {path: '', component: IdashboardComponent},
+                    {path: 'idashboard', component: IdashboardComponent},
+                    {path: '', component: IlandingPageComponent},
                     {path: 'iinterviews', component: IinterviewsListComponent},
                     {path: 'iinterviews/:id', component: IinterviewsDetailsComponent},
                     {path: 'itodos', component: ItodosComponent},

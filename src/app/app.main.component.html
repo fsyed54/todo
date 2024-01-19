@@ -1,4 +1,5 @@
-<div class="layout-wrapper" (click)="onLayoutClick()"
+<div class="layout-wrapper"
+     (click)="onLayoutClick()"
      [ngClass]="{'layout-static': isStatic(),
                 'layout-overlay': isOverlay(),
                 'layout-overlay-active': overlayMenuActive,
@@ -7,7 +8,8 @@
                 'layout-static-inactive': staticMenuDesktopInactive,
                 'layout-mobile-active': staticMenuMobileActive,
                 'layout-menu-dark':app.darkMenu,
-                'layout-menu-light':!app.darkMenu, 'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple}">
+                'layout-menu-light':!app.darkMenu, 'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple}"
+>
 
     <app-topbar></app-topbar>
 
@@ -26,17 +28,15 @@
     </div>
 
     <div class="layout-main">
-        <app-breadcrumb></app-breadcrumb>
-
+<!--        <app-breadcrumb></app-breadcrumb>-->
         <div class="layout-content">
             <router-outlet></router-outlet>
         </div>
-
         <app-footer></app-footer>
     </div>
 
     <app-config></app-config>
 
-    <div class="layout-mask"></div>
+<!--    <div class="layout-mask"></div>-->
 
 </div>

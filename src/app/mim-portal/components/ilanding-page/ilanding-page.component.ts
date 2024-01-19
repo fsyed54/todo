@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AuthServiceService} from "../../services/auth-service.service";
 
 @Component({
   selector: 'app-ilanding-page',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IlandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthServiceService) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {}
+
+    onLogin(form: NgForm){
+        console.log(form.value)
+        if(form.invalid){
+            return;
+        }
+        this.authService.login(form.value.email, form.value.password);
+    }
 
 }
