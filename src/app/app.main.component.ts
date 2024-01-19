@@ -52,7 +52,7 @@ export class AppMainComponent {
                 this.hideOverlayMenu();
             }
 
-            this.menuHoverActive = false;
+            this.menuHoverActive = true;
         }
 
         if (this.configActive && !this.configClick) {

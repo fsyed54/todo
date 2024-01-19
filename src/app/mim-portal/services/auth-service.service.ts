@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {UserData} from "../models/user-data";
 import {UserLoginData} from "../models/user-login-data";
 import {Subject} from "rxjs";
+import {UserServiceService} from "./user-service.service";
 
 
 @Injectable({
@@ -16,7 +17,10 @@ export class AuthServiceService {
     private token: string | undefined;
     private authStatusListener = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+      private http: HttpClient,
+      private userService: UserServiceService,
+      private router: Router) { }
 
     getToken(){
         return this.token;
@@ -67,8 +71,8 @@ export class AuthServiceService {
 
         this.http.post<{ token: string, expiresIn: number}>('http://localhost:3000/apis/users/login', userDataToLogin)
             .subscribe({
-
                 next: (response) =>{
+
                     console.log("Used logged in successfully", response)
                     const token = response.token;
                     this.token = token;
@@ -81,6 +85,9 @@ export class AuthServiceService {
 
                         const now = new Date();
                         const expirationDate = new Date(now.getTime() + expiredInDuration * 1000);
+
+
+                        this.userService.setLoggedInUserToken(this.token);
                         this.saveAuthData(token, expirationDate);
 
                         console.log("Just about to navigate");
@@ -95,10 +102,8 @@ export class AuthServiceService {
                 },
                     complete: () => {
 
-                    }}
-
-
-            )
+                    }
+            })
 
     }
 

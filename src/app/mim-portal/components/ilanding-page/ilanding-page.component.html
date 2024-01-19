@@ -16,17 +16,13 @@
 
     <div class="col-12 md:col-6 p-4 text-center md:text-left flex align-items-center">
 
-        <div>
-            <br>
-        </div>
-
-        <div class="container">
+        <div class="container" *ngIf="!isSignUpFormVisible">
             <div class="surface-card p-3 shadow-2 border-round w-full lg:w-28rem">
 
                 <div class="text-center mb-5">
                     <div class="text-900 text-3xl font-medium mb-3">Welcome back</div>
                     <span class="text-600 font-medium line-height-3">Don't have an account? </span>
-                    <a routerLink="/signup" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
+                    <a (click)="showSignupForm()" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Signup here!</a>
                 </div>
 
                 <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
@@ -34,10 +30,10 @@
                     <div>
                         <div class="formgrid grid">
                             <div class="field col">
-                                <label for="email">Email ID</label>
+                                <label for="signin_email">Email ID</label>
                                 <input
-                                    id="email"
-                                    name="email"
+                                    id="signin_email"
+                                    name="signin_email"
                                     type="text"
                                     #emailInput="ngModel"
                                     class="text-base
@@ -60,10 +56,10 @@
 
                         <div class="formgrid grid">
                             <div class="field col">
-                                <label for="password">Password</label>
+                                <label for="signin_password">Password</label>
                                 <input
-                                    id="password"
-                                    name="password"
+                                    id="signin_password"
+                                    name="signin_password"
                                     type="password"
                                     #passwordInput="ngModel"
                                     class="text-base
@@ -105,9 +101,187 @@
             </div>
         </div>
 
-        <div>
-            <br>
+        <div class="container" *ngIf="isSignUpFormVisible">
+            <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+                <div class="text-center mb-5">
+                    <img src="../../../../../imp-template-ui/src/app/mim-portal/assets/test-logo.png" alt="Image" height="50" class="mb-3">
+                    <div class="text-900 text-3xl font-medium mb-3">Welcome</div>
+                    <span class="text-600 font-medium line-height-3">You already have an account?</span>
+                    <a (click)="showSignupForm()" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Login here!</a>
+                </div>
+
+                <form  #signupForm="ngForm">
+                    <div>
+                        <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="firstname">Firstname</label>
+                                <input
+                                    id="firstname"
+                                    name="firstname"
+                                    type="text"
+                                    #firstnameInput="ngModel"
+                                    class="text-base
+                                text-color
+                                surface-overlay
+                                p-2 border-1
+                                border-solid
+                                surface-border
+                                border-round
+                                appearance-none
+                                outline-none
+                                focus:border-primary
+                                w-full"
+                                    required
+                                    ngModel
+                                    pInputText
+                                >
+                            </div>
+
+                            <div class="field col">
+                                <label for="lastname">Lastname</label>
+                                <input
+                                    id="lastname"
+                                    name="lastname"
+                                    type="text"
+                                    #lastnameInput="ngModel"
+                                    class="text-base
+                                text-color
+                                surface-overlay
+                                p-2 border-1
+                                border-solid
+                                surface-border
+                                border-round
+                                appearance-none
+                                outline-none
+                                focus:border-primary
+                                w-full"
+                                    required
+                                    pInputText
+                                    ngModel
+                                >
+                            </div>
+                        </div>
+
+                        <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="signup-email">Email ID</label>
+                                <input
+                                    id="signup-email"
+                                    name="signup-email"
+                                    type="text"
+                                    #emailInput="ngModel"
+                                    class="text-base
+                                text-color
+                                surface-overlay
+                                p-2 border-1
+                                border-solid
+                                surface-border
+                                border-round
+                                appearance-none
+                                outline-none
+                                focus:border-primary
+                                w-full"
+                                    required
+                                    pInputText
+                                    ngModel
+                                >
+                            </div>
+
+                            <div class="field col">
+                                <label for="mobile">Mobile</label>
+                                <input
+                                    id="mobile"
+                                    name="mobile"
+                                    type="text"
+                                    #mobileInput="ngModel"
+                                    class="text-base
+                                text-color
+                                surface-overlay
+                                p-2 border-1
+                                border-solid
+                                surface-border
+                                border-round
+                                appearance-none
+                                outline-none
+                                focus:border-primary
+                                w-full"
+                                    required
+                                    pInputText
+                                    ngModel
+                                >
+                            </div>
+                        </div>
+
+                        <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="signup-password">Password</label>
+
+                                <input
+                                    id="signup-password"
+                                    name="signup-password"
+                                    type="password"
+                                    #passwordInput="ngModel"
+                                    class="text-base
+                                text-color
+                                surface-overlay
+                                p-2 border-1
+                                border-solid
+                                surface-border
+                                border-round
+                                appearance-none
+                                outline-none
+                                focus:border-primary
+                                w-full"
+                                    required
+                                    pInputText
+                                    ngModel
+                                >
+                            </div>
+
+                            <div class="field col">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input
+                                    id="confirm-password"
+                                    name="confirm-password"
+                                    type="password"
+                                    #confirmpasswordInput="ngModel"
+                                    class="text-base
+                                text-color
+                                surface-overlay
+                                p-2 border-1
+                                border-solid
+                                surface-border
+                                border-round
+                                appearance-none
+                                outline-none
+                                focus:border-primary
+                                w-full"
+                                    required
+                                    pInputText
+                                    ngModel
+                                >
+                            </div>
+                        </div>
+                        <button
+                            type="submit"
+                            pButton
+                            pRipple
+                            label="Sign Up"
+                            icon="pi pi-user"
+                            class="w-full">
+                        </button>
+                    </div>
+
+                </form>
+            </div>
         </div>
+
+
+
+<!--        <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">-->
+<!--            Your registration was successful, please click here to Login.-->
+<!--        </div>-->
+
 
     </div>
 </div>

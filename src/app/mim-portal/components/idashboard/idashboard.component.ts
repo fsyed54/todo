@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import {UserServiceService} from "../../services/user-service.service";
 
 @Component({
   selector: 'app-idashboard',
@@ -8,7 +9,11 @@ import { Router } from "@angular/router";
 })
 export class IdashboardComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserServiceService) { }
+
+    ngOnInit(): void {
+        this.getUserToken();
+    }
 
     navigateToInterviews(){
           this.router.navigate(['iinterviews']);
@@ -18,9 +23,7 @@ export class IdashboardComponent implements OnInit {
       this.router.navigate(['itodos']);
     }
 
-
-
-  ngOnInit(): void {
-  }
-
+    getUserToken(){
+        const userTokenIs = this.userService.getLoggedInUserToken();
+    }
 }

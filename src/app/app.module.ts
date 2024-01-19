@@ -158,6 +158,7 @@ import { IinterviewsCuComponent } from './mim-portal/components/iinterviews-cu/i
 import { ItodosComponent } from './mim-portal/components/itodos/itodos.component';
 
 import { ScrollResizableDirective } from './mim-portal/custom-diretives/scroll-resizable.directive';
+import { ItopbarComponent } from './mim-portal/components/itopbar/itopbar.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -304,7 +305,8 @@ FullCalendarModule.registerPlugins([
         IinterviewsDetailsComponent,
         IinterviewsCuComponent,
         ItodosComponent,
-        ScrollResizableDirective
+        ScrollResizableDirective,
+        ItopbarComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

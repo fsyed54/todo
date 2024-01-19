@@ -19,7 +19,6 @@ export class InterviewServicesService {
 
     getSelectedInterview(): string {
         return this.selectedInterview;
-
     }
 
     getListOfAllInterviews(){
