@@ -1,36 +1,40 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {UserServiceService} from "../../services/user-service.service";
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthServiceService} from "../../services/auth-service.service";
+import {Subscription} from "rxjs";
+import {AppComponent} from "../../../app.component";
+import {AppMainComponent} from "../../../app.main.component";
 
 @Component({
   selector: 'app-itopbar',
   templateUrl: './itopbar.component.html',
   styleUrls: ['./itopbar.component.scss']
 })
-export class ItopbarComponent implements OnInit {
+export class ItopbarComponent implements OnInit, OnDestroy {
 
-    isAuthenticated: boolean = false;
-    username: string = '';
+    userIsAuthenticated: boolean = false;
     userToken: string = '';
-  constructor(
-      private authService: AuthServiceService,
-      private cdRef: ChangeDetectorRef,
-      private userService: UserServiceService) { }
+    private authListerSubs: Subscription;
+    constructor(private authService: AuthServiceService,
+                public app: AppComponent,
+                public appMain: AppMainComponent) { }
 
-    ngDoCheck(): void {
-        // Detect changes and update the view when the user logs in or out
-        if (this.userToken !== this.userService.getLoggedInUserToken()) {
-            this.userToken = this.userService.getLoggedInUserToken();
-            this.cdRef.detectChanges();
-        }
+    ngOnInit(): void {
+        this.authListerSubs = this.authService.authStatusListener.subscribe(isAuthenticated => {
+            this.userIsAuthenticated = isAuthenticated;
+            if (isAuthenticated) {
+                this.userToken = this.authService.getToken();
+            }
+        });
     }
 
-  ngOnInit(): void {
+    ngOnDestroy(): void {
+        this.authListerSubs.unsubscribe();
+    }
 
-  }
+
 
     logout(){
-      this.authService.logout();
+        this.authService.logout();
     }
 
 

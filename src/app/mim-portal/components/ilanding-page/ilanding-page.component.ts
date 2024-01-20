@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthServiceService} from "../../services/auth-service.service";
-import {UserServiceService} from "../../services/user-service.service";
 
 @Component({
   selector: 'app-ilanding-page',
@@ -12,13 +11,13 @@ export class IlandingPageComponent implements OnInit {
 
   constructor(private authService: AuthServiceService) { }
 
-    isSignUpFormVisible = false;
+    isSingInSignUpFormVisible = false;
 
 
     ngOnInit(): void {}
 
-    showSignupForm(){
-        this.isSignUpFormVisible = !this.isSignUpFormVisible;
+    showSignInSignupForm(){
+        this.isSingInSignUpFormVisible = !this.isSingInSignUpFormVisible;
     }
 
     onLogin(form: NgForm){

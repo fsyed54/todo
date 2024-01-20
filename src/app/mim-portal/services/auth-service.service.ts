@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import {UserData} from "../models/user-data";
 import {UserLoginData} from "../models/user-login-data";
 import {Subject} from "rxjs";
-import {UserServiceService} from "./user-service.service";
 
 
 @Injectable({
@@ -15,11 +14,10 @@ export class AuthServiceService {
     private tokenTimer: any;
     private isAuthenticated = false;
     private token: string | undefined;
-    private authStatusListener = new Subject<boolean>();
+    public authStatusListener = new Subject<boolean>();
 
   constructor(
       private http: HttpClient,
-      private userService: UserServiceService,
       private router: Router) { }
 
     getToken(){
@@ -31,11 +29,11 @@ export class AuthServiceService {
     }
 
     getAuthStatusListener(){
-        return this.authStatusListener;
+      console.log("getAuthStatusListener status: ", this.authStatusListener);
+        return this.authStatusListener.asObservable();
     }
 
-    createUser(
-        firstname: string,
+    createUser(firstname: string,
         lastname: string,
         email: string,
         mobile: string,
@@ -86,8 +84,6 @@ export class AuthServiceService {
                         const now = new Date();
                         const expirationDate = new Date(now.getTime() + expiredInDuration * 1000);
 
-
-                        this.userService.setLoggedInUserToken(this.token);
                         this.saveAuthData(token, expirationDate);
 
                         console.log("Just about to navigate");

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import {UserServiceService} from "../../services/user-service.service";
+import {AuthServiceService} from "../../services/auth-service.service";
+import {applyMutationToEventStore} from "@fullcalendar/angular";
 
 @Component({
   selector: 'app-idashboard',
@@ -9,10 +10,15 @@ import {UserServiceService} from "../../services/user-service.service";
 })
 export class IdashboardComponent implements OnInit {
 
-  constructor(private router: Router, private userService: UserServiceService) { }
+    isAuthenticated: boolean = false;
+  constructor(private router: Router, private authService: AuthServiceService) { }
 
     ngOnInit(): void {
-        this.getUserToken();
+      const token = this.authService.getToken();
+      if(token){
+          this.isAuthenticated = true;
+      }
+      console.log("this is token: ", token);
     }
 
     navigateToInterviews(){
@@ -23,7 +29,4 @@ export class IdashboardComponent implements OnInit {
       this.router.navigate(['itodos']);
     }
 
-    getUserToken(){
-        const userTokenIs = this.userService.getLoggedInUserToken();
-    }
 }
