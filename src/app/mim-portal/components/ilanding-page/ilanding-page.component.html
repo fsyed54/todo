@@ -16,15 +16,16 @@
 
     <div class="col-12 md:col-6 p-4 text-center md:text-left flex align-items-center">
 
-        <div class="container" *ngIf="!isSingInSignUpFormVisible">
+        <div class="container" *ngIf="!isSignInFormVisible">
             <div class="surface-card p-3 shadow-2 border-round w-full lg:w-28rem">
 
                 <div class="text-center mb-5">
                     <div class="text-900 text-3xl font-medium mb-3">Welcome back</div>
                     <span class="text-600 font-medium line-height-3">Don't have an account? </span>
-                    <a (click)="showSignInSignupForm()" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Signup here!</a>
+                    <a (click)="showSignupForm()" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Signup here!</a>
                 </div>
 
+<!--                Login Form-->
                 <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
 
                     <div>
@@ -101,16 +102,17 @@
             </div>
         </div>
 
-        <div class="container" *ngIf="isSingInSignUpFormVisible">
-            <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+        <div class="container" *ngIf="isSignUpFormVisible">
+            <div class="surface-card p-4 shadow-2 border-round w-full lg:w-28rem">
+
                 <div class="text-center mb-5">
-                    <img src="../../../../../imp-template-ui/src/app/mim-portal/assets/test-logo.png" alt="Image" height="50" class="mb-3">
                     <div class="text-900 text-3xl font-medium mb-3">Welcome</div>
                     <span class="text-600 font-medium line-height-3">You already have an account?</span>
-                    <a (click)="showSignInSignupForm()" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Login here!</a>
+                    <a (click)="showSignInForm()" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Login here!</a>
                 </div>
 
-                <form  #signupForm="ngForm">
+<!--                Signup Form-->
+                <form (submit)="onSignup(signupForm)"  #signupForm="ngForm">
                     <div>
                         <div class="formgrid grid">
                             <div class="field col">
@@ -164,10 +166,10 @@
 
                         <div class="formgrid grid">
                             <div class="field col">
-                                <label for="signup-email">Email ID</label>
+                                <label for="signup_email">Email ID</label>
                                 <input
-                                    id="signup-email"
-                                    name="signup-email"
+                                    id="signup_email"
+                                    name="signup_email"
                                     type="text"
                                     #emailInput="ngModel"
                                     class="text-base
@@ -214,11 +216,11 @@
 
                         <div class="formgrid grid">
                             <div class="field col">
-                                <label for="signup-password">Password</label>
+                                <label for="signup_password">Password</label>
 
                                 <input
-                                    id="signup-password"
-                                    name="signup-password"
+                                    id="signup_password"
+                                    name="signup_password"
                                     type="password"
                                     #passwordInput="ngModel"
                                     class="text-base
@@ -239,10 +241,10 @@
                             </div>
 
                             <div class="field col">
-                                <label for="confirm-password">Confirm Password</label>
+                                <label for="confirm_password">Confirm Password</label>
                                 <input
-                                    id="confirm-password"
-                                    name="confirm-password"
+                                    id="confirm_password"
+                                    name="confirm_password"
                                     type="password"
                                     #confirmpasswordInput="ngModel"
                                     class="text-base
@@ -276,11 +278,16 @@
             </div>
         </div>
 
+        <div class="container">
+            <div class="surface-card p-4 shadow-2 border-round w-full lg:w-28rem" *ngIf="isRegistrationSuccessful">
 
+                <div class="text-center mb-5">
+                    <span class="text-600 font-medium line-height-3">Your registration was successful, please</span>
+                    <a href="/" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">login here!</a>
+                </div>
 
-<!--        <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">-->
-<!--            Your registration was successful, please click here to Login.-->
-<!--        </div>-->
+            </div>
+        </div>
 
 
     </div>

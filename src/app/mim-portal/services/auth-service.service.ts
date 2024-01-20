@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 import {UserData} from "../models/user-data";
 import {UserLoginData} from "../models/user-login-data";
 import {Subject} from "rxjs";
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,8 @@ export class AuthServiceService {
     private isAuthenticated = false;
     private token: string | undefined;
     public authStatusListener = new Subject<boolean>();
+
+    private jwtHelper = new JwtHelperService();
 
   constructor(
       private http: HttpClient,
@@ -50,7 +52,8 @@ export class AuthServiceService {
         this.http.post<{ message: string }>('http://localhost:3000/apis/users/signup', newUserData)
             .subscribe({
                 next: (response) =>{
-                    this.router.navigate(['/after-signup']);
+                    // this.router.navigate(['/after-signup']);
+                    return response;
                 },
                 error: (error) => {
                     console.error("Error while creating new user", error)
@@ -126,6 +129,13 @@ export class AuthServiceService {
     private clearAuthData(){
         localStorage.removeItem("token");
         localStorage.removeItem("expiration");
+    }
+
+    getDecodedTokenValues() {
+      if(this.token){
+          return this.jwtHelper.decodeToken(this.token);
+      }
+      return null;
     }
 
 }

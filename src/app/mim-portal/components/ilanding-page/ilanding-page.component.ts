@@ -11,14 +11,24 @@ export class IlandingPageComponent implements OnInit {
 
   constructor(private authService: AuthServiceService) { }
 
-    isSingInSignUpFormVisible = false;
+    isSignInFormVisible = false;
+    isSignUpFormVisible = false;
+    isRegistrationSuccessful = false;
+
+    showSignInForm() {
+        this.isSignInFormVisible = !this.isSignInFormVisible;
+        this.isSignUpFormVisible = !this.isSignUpFormVisible;
+    }
+
+    showSignupForm() {
+        this.isSignUpFormVisible = !this.isSignUpFormVisible;
+        this.isSignInFormVisible = !this.isSignInFormVisible;
+    }
+
 
 
     ngOnInit(): void {}
 
-    showSignInSignupForm(){
-        this.isSingInSignUpFormVisible = !this.isSingInSignUpFormVisible;
-    }
 
     onLogin(form: NgForm){
         console.log(form.value)
@@ -28,4 +38,19 @@ export class IlandingPageComponent implements OnInit {
         this.authService.login(form.value.signin_email, form.value.signin_password);
     }
 
+    onSignup(form: NgForm) {
+        if(form.invalid){
+            return;
+        }
+        this.authService.createUser(
+            form.value.firstname,
+            form.value.lastname,
+            form.value.signup_email,
+            form.value.mobile,
+            form.value.signup_password
+        );
+
+        this.isRegistrationSuccessful = !this.isRegistrationSuccessful;
+        this.isSignUpFormVisible = !this.isSignUpFormVisible;
+    }
 }

@@ -12,7 +12,9 @@ import {AppMainComponent} from "../../../app.main.component";
 export class ItopbarComponent implements OnInit, OnDestroy {
 
     userIsAuthenticated: boolean = false;
-    userToken: string = '';
+    decodedToken: string = '';
+    userFullObject: string = '';
+    userFirstName: string = '';
     private authListerSubs: Subscription;
     constructor(private authService: AuthServiceService,
                 public app: AppComponent,
@@ -22,7 +24,11 @@ export class ItopbarComponent implements OnInit, OnDestroy {
         this.authListerSubs = this.authService.authStatusListener.subscribe(isAuthenticated => {
             this.userIsAuthenticated = isAuthenticated;
             if (isAuthenticated) {
-                this.userToken = this.authService.getToken();
+                this.decodedToken = this.authService.getDecodedTokenValues();
+                this.userFullObject = JSON.stringify(this.decodedToken);
+                const userData = JSON.parse(this.userFullObject);
+                // Extract the firstname from the JSON data
+                this.userFirstName = userData.firstname.trim();
             }
         });
     }
@@ -32,11 +38,8 @@ export class ItopbarComponent implements OnInit, OnDestroy {
     }
 
 
-
     logout(){
         this.authService.logout();
     }
-
-
 
 }
