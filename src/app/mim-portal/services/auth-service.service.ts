@@ -118,9 +118,9 @@ export class AuthServiceService {
     }
 
     logout(){
+        this.authStatusListener.next(false);
         this.token = '';
         this.isAuthenticated = false;
-        this.authStatusListener.next(false);
         clearTimeout(this.tokenTimer);
         this.clearAuthData();
         this.router.navigate(['/']);

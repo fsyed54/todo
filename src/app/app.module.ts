@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // PrimeNG Components for demos
 import {AccordionModule} from 'primeng/accordion';
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -159,6 +159,7 @@ import { ItodosComponent } from './mim-portal/components/itodos/itodos.component
 
 import { ScrollResizableDirective } from './mim-portal/custom-diretives/scroll-resizable.directive';
 import { ItopbarComponent } from './mim-portal/components/itopbar/itopbar.component';
+import {IinterceptorInterceptor} from "./mim-portal/interceptors/iinterceptor.interceptor";
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -310,6 +311,11 @@ FullCalendarModule.registerPlugins([
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: IinterceptorInterceptor,
+            multi: true,
+        },
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, BreadcrumbService
     ],

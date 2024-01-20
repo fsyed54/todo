@@ -28,7 +28,6 @@ export class ItopbarComponent implements OnInit, OnDestroy {
                 this.decodedToken = this.authService.getDecodedTokenValues();
                 this.userFullObject = JSON.stringify(this.decodedToken);
                 const userData = JSON.parse(this.userFullObject);
-                // Extract the firstname from the JSON data
                 this.userFirstName = userData.firstname.trim();
                 this.userLastname = userData.lastname.trim();
             }

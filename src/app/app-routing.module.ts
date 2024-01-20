@@ -37,6 +37,7 @@ import {IinterviewsListComponent} from "./mim-portal/components/iinterviews-list
 import {ItodosComponent} from "./mim-portal/components/itodos/itodos.component";
 import {IinterviewsCuComponent} from "./mim-portal/components/iinterviews-cu/iinterviews-cu.component";
 import {IinterviewsDetailsComponent} from "./mim-portal/components/iinterviews-details/iinterviews-details.component";
+import { AuthGuard} from "./mim-portal/auth-guards/auth.guard";
 
 @NgModule({
     imports: [
@@ -44,14 +45,14 @@ import {IinterviewsDetailsComponent} from "./mim-portal/components/iinterviews-d
             {
                 path: '', component: AppMainComponent,
                 children: [
-                    // {path: '', component: DashboardDemoComponent},
-                    // {path: '', component: IlandingPageComponent},
-                    {path: 'idashboard', component: IdashboardComponent},
+
+                    {path: 'idashboard', component: IdashboardComponent , canActivate: [AuthGuard]},
                     {path: '', component: IlandingPageComponent},
-                    {path: 'iinterviews', component: IinterviewsListComponent},
-                    {path: 'iinterviews/:id', component: IinterviewsDetailsComponent},
-                    {path: 'itodos', component: ItodosComponent},
-                    {path: 'icu', component: IinterviewsCuComponent},
+                    {path: 'iinterviews', component: IinterviewsListComponent , canActivate: [AuthGuard]},
+                    {path: 'iinterviews/:id', component: IinterviewsDetailsComponent , canActivate: [AuthGuard]},
+                    {path: 'itodos', component: ItodosComponent , canActivate: [AuthGuard]},
+                    {path: 'icu', component: IinterviewsCuComponent , canActivate: [AuthGuard]},
+
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
@@ -87,7 +88,8 @@ import {IinterviewsDetailsComponent} from "./mim-portal/components/iinterviews-d
             {path: '**', redirectTo: '/notfound'},
         ], {scrollPositionRestoration: 'enabled'})
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+
 })
 export class AppRoutingModule {
 }
