@@ -15,6 +15,7 @@ export class ItopbarComponent implements OnInit, OnDestroy {
     decodedToken: string = '';
     userFullObject: string = '';
     userFirstName: string = '';
+    userLastname: string = '';
     private authListerSubs: Subscription;
     constructor(private authService: AuthServiceService,
                 public app: AppComponent,
@@ -29,6 +30,7 @@ export class ItopbarComponent implements OnInit, OnDestroy {
                 const userData = JSON.parse(this.userFullObject);
                 // Extract the firstname from the JSON data
                 this.userFirstName = userData.firstname.trim();
+                this.userLastname = userData.lastname.trim();
             }
         });
     }

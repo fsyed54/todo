@@ -5,6 +5,8 @@
     </a>
 
     <ul class="topbar-menu fadeInDown" [ngClass]="{'topbar-menu-visible': appMain.topbarMenuActive}">
+
+        <span class="topbar-item-name username">{{ userFirstName+' '+userLastname }}</span>
         <li #profile class="user-profile"
             *ngIf="userIsAuthenticated && app.profileMode==='popup'||appMain.isHorizontal()"
             [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === profile}">
@@ -15,7 +17,6 @@
 
             <ul class="fadeInDown">
                 <li role="menuitem">
-                    <span class="topbar-item-name">Welcome, {{ userFirstName }}</span>
                     <a href="#" (click)="logout()">
                         <i class="pi pi-user"></i>
                         <span>Logout</span>
