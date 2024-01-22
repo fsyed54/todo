@@ -1,3 +1,10 @@
 .clickable-card {
     cursor: pointer;
 }
+
+.custom-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure the container takes up the full viewport height */
+}

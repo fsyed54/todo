@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InterviewServicesService } from "../../services/interview-services.service";
 import { Router} from "@angular/router";
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-iinterviews-details',
@@ -16,12 +16,41 @@ export class IinterviewsDetailsComponent implements OnInit {
     technicalSkillsRatingValue!: number;
 
     editForm: FormGroup;
+    display: boolean = false;
 
   constructor(
       public interviewService: InterviewServicesService,
       private router: Router,
       private fb: FormBuilder
-  ) { }
+  ) {
+      //
+      // this.editForm = this.fb.group({
+      //     c_firstname: this.c_firstname,
+      //     c_lastname: this.c_lastname,
+      //     c_email: this.c_email,
+      //     c_visa: this.c_visa,
+      //     c_certifications: this.c_certifications,
+      //     r_name: this.r_name,
+      //     r_email: this.r_email,
+      //     ir_name: this.ir_name,
+      //     i_position: this.i_position,
+      //     i_doi: this.i_doi,
+      //     i_toi: this.i_toi,
+      //     i_frontend_skills: this.i_frontend_skills,
+      //     i_backend_skills: this.i_backend_skills,
+      //     i_cloud_skills: this.i_cloud_skills,
+      //     i_linux_devops_skills: this.i_linux_devops_skills,
+      //     i_overall_feedback: this.i_overall_feedback,
+      //     i_candidate_behavior_skills: this.i_candidate_behavior_skills,
+      //     i_frontend_skills_rating: this.i_frontend_skills_rating,
+      //     i_backend_skills_rating: this.i_backend_skills_rating,
+      //     i_cloud_skills_rating: this.i_cloud_skills_rating,
+      //     i_linux_devops_skills_rating: this.i_linux_devops_skills_rating,
+      //     i_candidate_business_knowledge_rating: this.i_candidate_business_knowledge_rating,
+      //     i_top_three_skills: this.i_top_three_skills,
+      //     i_final_result: this.i_final_result
+      // });
+  }
 
     // Candidate details
     c_firstname = new FormControl('', {validators: [Validators.required]});
@@ -44,13 +73,13 @@ export class IinterviewsDetailsComponent implements OnInit {
     i_cloud_skills  = new FormControl('', {validators: []});
     i_linux_devops_skills  = new FormControl('', {validators: []});
     i_overall_feedback  = new FormControl('', {validators: []});
-    i_candidate_behaviour_skills  = new FormControl('', {validators: []});
+    i_candidate_behavior_skills  = new FormControl('', {validators: []});
 
     // Overall Technical Ratings
     i_frontend_skills_rating  = new FormControl('', {validators: []});
     i_backend_skills_rating  = new FormControl('', {validators: []});
     i_cloud_skills_rating  = new FormControl('', {validators: []});
-    i_linux_devops_rating  = new FormControl('', {validators: []});
+    i_linux_devops_skills_rating  = new FormControl('', {validators: []});
     i_candidate_business_knowledge_rating  = new FormControl('', {validators: []});
 
     // Interview Outcomes
@@ -62,32 +91,6 @@ export class IinterviewsDetailsComponent implements OnInit {
       console.log("This ID is from interview details ngOnInit", this.selectedInterview);
       this.fetchMoreInterviewDetails(this.selectedInterview);
 
-      this.editForm = this.fb.group({
-          c_firstname: this.c_firstname,
-          c_lastname: this.c_lastname,
-          c_email: this.c_email,
-          c_visa: this.c_visa,
-          c_certifications: this.c_certifications,
-          r_name: this.r_name,
-          r_email: this.r_email,
-          ir_name: this.ir_name,
-          i_position: this.i_position,
-          i_doi: this.i_doi,
-          i_toi: this.i_toi,
-          i_frontend_skills: this.i_frontend_skills,
-          i_backend_skills: this.i_backend_skills,
-          i_cloud_skills: this.i_cloud_skills,
-          i_linux_devops_skills: this.i_linux_devops_skills,
-          i_overall_feedback: this.i_overall_feedback,
-          i_candidate_behavior_skills: this.i_candidate_behaviour_skills,
-          i_frontend_skills_rating: this.i_frontend_skills_rating,
-          i_backend_skills_rating: this.i_backend_skills_rating,
-          i_cloud_skills_rating: this.i_cloud_skills_rating,
-          i_linux_devops_skills_rating: this.i_linux_devops_rating,
-          i_candidate_business_knowledge_rating: this.i_candidate_business_knowledge_rating,
-          i_top_three_skills: this.i_top_three_skills,
-          i_final_result: this.i_final_result
-      });
   }
 
     fetchMoreInterviewDetails(interviewId: string){
@@ -120,6 +123,12 @@ export class IinterviewsDetailsComponent implements OnInit {
                     // @ts-ignore
                     this.currentInterview.dateOfInterview = date.toLocaleDateString();
 
+                    // const chipsSkillsArray = this.editForm.get('skills') as FormArray;
+                    //
+                    // this.currentInterview.i_top_three_skills.forEach(value => {
+                    //     chipsSkillsArray.push(this.fb.group({ value }))
+                    // });
+
                     this.editForm.patchValue({
                         c_firstname: this.currentInterview.candidateFirstName,
                         c_lastname: this.currentInterview.candidateLastName,
@@ -137,7 +146,6 @@ export class IinterviewsDetailsComponent implements OnInit {
                         i_cloud_skills: this.currentInterview.candidateCloudSkills,
                         i_linux_devops_skills: this.currentInterview.candidateLinuxDevOpsSkills,
                         i_overall_feedback: this.currentInterview.overallTechnicalFeedback,
-
                         i_candidate_behavior_skills: this.currentInterview.behavioralFeedback,
                         i_frontend_skills_rating: this.currentInterview.candidateFrontendSkillsRating,
                         i_backend_skills_rating: this.currentInterview.candidateBackendSkillsRating,
@@ -147,7 +155,6 @@ export class IinterviewsDetailsComponent implements OnInit {
                         i_top_three_skills: this.currentInterview.candidateTopThreeSkills,
                         i_final_result: this.currentInterview.interviewStatus
                     });
-
 
                 },
                 error: (error: any) => {
@@ -165,16 +172,34 @@ export class IinterviewsDetailsComponent implements OnInit {
     }
 
     onClickEdit() {
-     this.fetchMoreInterviewDetailsToEdit(this.currentInterview.id);
+        this.display = true;
+        this.fetchMoreInterviewDetailsToEdit(this.currentInterview.id);
     }
 
-    protected readonly onsubmit = onsubmit;
+    showDialog() {
+
+    }
 
     onClickSaveInEdit() {
+
         if (this.editForm.valid) {
             const updatedData = this.editForm.value;
-            // Send the updated data to the server or perform other actions
-            console.log(updatedData);
+            console.log("This is the updated data: ", updatedData);
+
+            this.interviewService.createNewInterview(updatedData)
+                .subscribe({
+                    next: (value: any) => {
+                        console.log(value);
+                    },
+                    error: (error: any) => {
+                        console.error("Error is: ", error)
+                    },
+                    complete: () => {
+
+                    }
+                })
+        } else {
+            console.log('Form is invalid. Please check the fields.');
         }
     }
 }

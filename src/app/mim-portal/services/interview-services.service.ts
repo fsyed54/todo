@@ -32,10 +32,12 @@ export class InterviewServicesService {
     }
 
     createNewInterview(iCreateInterviewFromData: any): Observable<any>{
+        console.log("new interview object before settng headers: ", iCreateInterviewFromData)
+
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
         });
-        console.log("This is from server, submitted data: ", iCreateInterviewFromData);
+        // console.log("This is from server, submitted data: ", iCreateInterviewFromData);
 
         const newInterviewObject = {
             "dateOfInterview": iCreateInterviewFromData.i_doi,
@@ -55,9 +57,9 @@ export class InterviewServicesService {
             "candidateCloudSkills": iCreateInterviewFromData.i_cloud_skills,
             "candidateCloudSkillsRating": iCreateInterviewFromData.i_cloud_skills_rating,
             "candidateLinuxDevOpsSkills": iCreateInterviewFromData.i_linux_devops_skills,
-            "candidateLinuxDevOpsSkillsRating": iCreateInterviewFromData.i_linux_devops_rating,
+            "candidateLinuxDevOpsSkillsRating": iCreateInterviewFromData.i_linux_devops_skills_rating,
             "candidateBusinessKnowledgeRating": iCreateInterviewFromData.i_candidate_business_knowledge_rating,
-            "behavioralFeedback": iCreateInterviewFromData.i_candidate_behaviour_skills,
+            "behavioralFeedback": iCreateInterviewFromData.i_candidate_behavior_skills,
             "overallTechnicalFeedback" : iCreateInterviewFromData.i_overall_feedback,
             "candidateTopThreeSkills": iCreateInterviewFromData.i_top_three_skills,
             "interviewForPosition":  iCreateInterviewFromData.i_position,
