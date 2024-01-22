@@ -46,12 +46,13 @@ import { AuthGuard} from "./mim-portal/auth-guards/auth.guard";
                 path: '', component: AppMainComponent,
                 children: [
 
-                    {path: 'idashboard', component: IdashboardComponent , canActivate: [AuthGuard]},
+                    // , canActivate: [AuthGuard]
+                    {path: 'idashboard', component: IdashboardComponent },
                     {path: '', component: IlandingPageComponent},
-                    {path: 'iinterviews', component: IinterviewsListComponent , canActivate: [AuthGuard]},
-                    {path: 'iinterviews/:id', component: IinterviewsDetailsComponent , canActivate: [AuthGuard]},
-                    {path: 'itodos', component: ItodosComponent , canActivate: [AuthGuard]},
-                    {path: 'icu', component: IinterviewsCuComponent , canActivate: [AuthGuard]},
+                    {path: 'iinterviews', component: IinterviewsListComponent},
+                    {path: 'iinterviews/:id', component: IinterviewsDetailsComponent},
+                    {path: 'itodos', component: ItodosComponent},
+                    {path: 'icu', component: IinterviewsCuComponent},
 
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},

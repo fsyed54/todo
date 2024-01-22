@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import {AuthServiceService} from "../../services/auth-service.service";
-import {applyMutationToEventStore} from "@fullcalendar/angular";
 
 @Component({
   selector: 'app-idashboard',

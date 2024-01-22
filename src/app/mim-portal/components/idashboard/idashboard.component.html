@@ -1,39 +1,49 @@
 
+<div class="p-grid p-justify-center p-align-center" style="height: 100vh;">
+    <div class="p-col-12 p-md-6 p-lg-4">
+        <div class="header surface-card p-4 shadow-2 border-round">
+            <!-- Your card content goes here -->
+            <div class="grid">
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="clickable-card  surface-card shadow-3 p-3 border-round" (click)="navigateToInterviews()">
 
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-500 font-medium mb-3"></span>
+                                <div class="text-900 font-medium text-xl">Interviews</div>
+                            </div>
+                        </div>
 
+                        <span class="text-green-500 font-medium">24 new </span>
+                        <span class="text-500">this quarter</span>
+                    </div>
+                </div>
 
-
-
-
-<div class="grid">
-    <div class="col-12 md:col-6 lg:col-3">
-        <div class="clickable-card  surface-card shadow-3 p-3 border-round" (click)="navigateToInterviews()">
-
-            <div class="flex justify-content-between mb-3">
-                <div>
-                    <span class="block text-500 font-medium mb-3"></span>
-                    <div class="text-900 font-medium text-xl">Interviews</div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="clickable-card surface-card shadow-3 p-3 border-round" (click)="navigateToTodos()">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-500 font-medium mb-3"></span>
+                                <div class="text-900 font-medium text-xl">Todos</div>
+                            </div>
+                        </div>
+                        <span class="text-green-500 font-medium">12/56</span>
+                        <span class="text-500"> completed</span>
+                    </div>
                 </div>
             </div>
-
-            <span class="text-green-500 font-medium">24 new </span>
-            <span class="text-500">this quarter</span>
-        </div>
-    </div>
-
-    <div class="col-12 md:col-6 lg:col-3">
-        <div class="clickable-card surface-card shadow-3 p-3 border-round" (click)="navigateToTodos()">
-            <div class="flex justify-content-between mb-3">
-                <div>
-                    <span class="block text-500 font-medium mb-3"></span>
-                    <div class="text-900 font-medium text-xl">Todos</div>
-                </div>
-            </div>
-            <span class="text-green-500 font-medium">12/56</span>
-            <span class="text-500"> completed</span>
         </div>
     </div>
 </div>
+
+
+<br>
+
+
+
+
+
+
 
 
 <!--<br><br><br>-->
