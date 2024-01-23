@@ -161,6 +161,8 @@ import { ItodosComponent } from './mim-portal/components/itodos/itodos.component
 import { ScrollResizableDirective } from './mim-portal/custom-diretives/scroll-resizable.directive';
 import { ItopbarComponent } from './mim-portal/components/itopbar/itopbar.component';
 import {IinterceptorInterceptor} from "./mim-portal/interceptors/iinterceptor.interceptor";
+import {MessageService} from "primeng/api";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -256,7 +258,8 @@ FullCalendarModule.registerPlugins([
         TreeTableModule,
         VirtualScrollerModule,
         AppCodeModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ProgressSpinnerModule
     ],
     declarations: [
         AppComponent,
@@ -318,7 +321,7 @@ FullCalendarModule.registerPlugins([
             multi: true,
         },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, BreadcrumbService
+        PhotoService, ProductService, MenuService, BreadcrumbService, MessageService
     ],
     bootstrap: [AppComponent]
 })

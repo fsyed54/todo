@@ -17,7 +17,7 @@ export class IinterviewsListComponent implements OnInit {
       public router: Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
       this.fetchInterviewsList();
   }
 
@@ -34,6 +34,8 @@ fetchInterviewsList() {
                 // @ts-ignore
                 interview.dateOfInterview = date.toLocaleDateString()
             })
+
+            console.log(this.interviewsList);
         },
         error: (error: any) => {
             console.error("Error is: ", error)
@@ -48,8 +50,8 @@ getRowIndex(rowIndex: number): number {
     return rowIndex + 1;
 }
 
-onRowClick(interview: any): void {
-    const interviewId = interview.id;
+onRowClick(interview: any)  {
+    const interviewId = interview.candidate_id;
     console.log("This is the clicked interview ID: ",interviewId);
 
     this.interviewService.setSelectedInterview(interviewId);

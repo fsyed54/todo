@@ -23,6 +23,7 @@ export class ItopbarComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.authListerSubs = this.authService.authStatusListener.subscribe(isAuthenticated => {
+
             this.userIsAuthenticated = isAuthenticated;
             if (isAuthenticated) {
                 this.decodedToken = this.authService.getDecodedTokenValues();

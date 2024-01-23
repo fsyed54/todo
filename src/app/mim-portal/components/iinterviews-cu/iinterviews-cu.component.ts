@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, FormControl, Validators, NgForm, Form} from "@an
 import {Router} from "@angular/router";
 import {InterviewServicesService} from "../../services/interview-services.service";
 import {Interviews} from "../../models/interviews";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-iinterviews-cu',
@@ -13,11 +14,13 @@ import {Interviews} from "../../models/interviews";
 })
 export class IinterviewsCuComponent implements OnInit {
 
+    loading = false;
     interviewsList: Interviews[] = [];
 
     constructor(
         private fb: FormBuilder,
         public interviewService: InterviewServicesService,
+        private messageService: MessageService,
         public router: Router) { }
 
     // Candidate details
@@ -34,6 +37,7 @@ export class IinterviewsCuComponent implements OnInit {
     i_position  = new FormControl('', {validators: []});
     i_doi = new FormControl('', {validators: []});
     i_toi  = new FormControl('', {validators: []});
+
 
     // Technical Feedback
     i_frontend_skills  = new FormControl('', {validators: []});
@@ -54,6 +58,7 @@ export class IinterviewsCuComponent implements OnInit {
     i_top_three_skills  = new FormControl('', {validators: []});
     i_final_result  = new FormControl('', {validators: []});
 
+   createdBy: string = "Bhanu Knadregula";
 
     iCreateUpdateForm = this.fb.group({
         c_firstname: this.c_firstname,
@@ -85,13 +90,46 @@ export class IinterviewsCuComponent implements OnInit {
         console.log("iCreateUpdate form values are: ", this.iCreateUpdateForm.value);
     }
 
+    showSuccessToastAndRoute() {
+        // Set loading to true
+        this.loading = true;
+
+        this.messageService.add({
+            severity: 'info',
+            summary: 'Please wait...',
+            detail: 'Processing your request.',
+            life: 1000
+        });
+
+        this.messageService.add({
+            severity: 'success',
+            summary: 'Interview Created',
+            detail: 'The interview was created successfully.',
+            life: 6000
+        });
+
+        setTimeout(() => {
+            // Route to the dashboard
+            this.router.navigate(['/iinterviews']);
+        }, 2000);
+
+
+    }
+
+
     onClickSave(){
+        this.showSuccessToastAndRoute();
         if (this.iCreateUpdateForm.valid) {
             console.log('Form submitted:', this.iCreateUpdateForm.value);
-            this.interviewService.createNewInterview(this.iCreateUpdateForm.value)
+
+           const data =  { ...this.iCreateUpdateForm.value, createdBy: this.createdBy };
+
+           console.log("This is the final objet to save: ",data);
+
+            this.interviewService.createNewInterview(data)
                 .subscribe({
                     next: (value: any) => {
-                        console.log(value);
+
                     },
                     error: (error: any) => {
                         console.error("Error is: ", error)
@@ -100,10 +138,13 @@ export class IinterviewsCuComponent implements OnInit {
 
                     }
                 })
+
         } else {
             console.log('Form is invalid. Please check the fields.');
         }
     }
+
+
 
     onClickCancel(){
         this.iCreateUpdateForm.reset();
@@ -111,19 +152,6 @@ export class IinterviewsCuComponent implements OnInit {
         console.log('Form canceled');
     }
 
-    states: any[] = [
-        {name: 'Arizona', code: 'Arizona'},
-        {name: 'California', value: 'California'},
-        {name: 'Florida', code: 'Florida'},
-        {name: 'Ohio', code: 'Ohio'},
-        {name: 'Washington', code: 'Washington'}
-    ];
-    resultOutcomes = [
-        { name: 'Selected', code: 'selected' },
-        { name: 'Keep in hold', code: 'hold' },
-        { name: 'Not selected', code: 'not-selected' },
-        { name: 'Schedule another round after a week', code: 'reschedule'}
-    ];
 }
 
 
