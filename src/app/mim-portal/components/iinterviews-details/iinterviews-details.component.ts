@@ -94,7 +94,6 @@ export class IinterviewsDetailsComponent implements OnInit {
   }
 
     showSuccessToastAndRoute() {
-        // Set loading to true
         this.loading = true;
 
         this.messageService.add({
@@ -112,7 +111,7 @@ export class IinterviewsDetailsComponent implements OnInit {
         });
 
         setTimeout(() => {
-            this.router.navigate(['/iinterviews', this.currentInterview.id]);
+            this.router.navigate(['/iinterviews']);
         }, 2000);
 
 
@@ -125,6 +124,7 @@ export class IinterviewsDetailsComponent implements OnInit {
 
     onClickEdit() {
         this.display = true;
+        this.interviewService.setSelectedInterview(this.currentInterview)
         this.fetchMoreInterviewDetailsToEdit(this.currentInterview.candidate_id);
     }
 

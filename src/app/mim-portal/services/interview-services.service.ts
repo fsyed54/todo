@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Interviews} from "../models/interviews";
 import {Observable} from "rxjs";
+import { environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterviewServicesService {
 
-    backendEndpoint = "http://localhost:3000";
+    backendUrl = environment.baseUrl;
     private selectedInterview: string = '';
 
     constructor(private http: HttpClient) { }
@@ -17,16 +18,16 @@ export class InterviewServicesService {
         this.selectedInterview = interview;
     }
 
-    getSelectedInterview(): string {
+    getSelectedInterview(): any {
         return this.selectedInterview;
     }
 
     getListOfAllInterviews(){
-        return this.http.get<Interviews[]>(`${this.backendEndpoint}/apis/interviews`);
+        return this.http.get<Interviews[]>(`${this.backendUrl}/apis/interviews`);
     }
 
     getInterviewDetails(interviewId: string) {
-        const response = this.http.get<Interviews>(`${this.backendEndpoint}/apis/interviews/${interviewId}`);
+        const response = this.http.get<Interviews>(`${this.backendUrl}/apis/interviews/${interviewId}`);
         return response;
     }
 
@@ -68,7 +69,7 @@ export class InterviewServicesService {
 
         console.log("New interview object: ",newInterviewObject);
 
-        return this.http.post<Interviews>(`${this.backendEndpoint}/apis/interviews/interview`, newInterviewObject, {headers});
+        return this.http.post<Interviews>(`${this.backendUrl}/apis/interviews/interview`, newInterviewObject, {headers});
     }
 
     updateCurrentInterview(iCreateInterviewFromData: any){
@@ -105,6 +106,6 @@ export class InterviewServicesService {
             "interviewStatus": iCreateInterviewFromData.i_final_result
         }
 
-        return this.http.put<Interviews>(`${this.backendEndpoint}/apis/interviews/${iCreateInterviewFromData._id}`, newInterviewObjectToUpdate, {headers});
+        return this.http.put<Interviews>(`${this.backendUrl}/apis/interviews/${iCreateInterviewFromData._id}`, newInterviewObjectToUpdate, {headers});
     }
 }

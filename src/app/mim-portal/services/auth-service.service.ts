@@ -5,17 +5,19 @@ import {UserData} from "../models/user-data";
 import {UserLoginData} from "../models/user-login-data";
 import {Subject} from "rxjs";
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
 
+    backendUrl = environment.baseUrl;
+
     private tokenTimer: any;
     private isAuthenticated = false;
     private token: string | undefined;
     public authStatusListener = new Subject<boolean>();
-
     private jwtHelper = new JwtHelperService();
 
   constructor(
@@ -49,10 +51,9 @@ export class AuthServiceService {
             password: password,
         }
 
-        this.http.post<{ message: string }>('http://localhost:3000/apis/users/signup', newUserData)
+        this.http.post<{ message: string }>(`${this.backendUrl}/apis/users/signup`, newUserData)
             .subscribe({
                 next: (response) =>{
-                    // this.router.navigate(['/after-signup']);
                     return response;
                 },
                 error: (error) => {
@@ -70,7 +71,8 @@ export class AuthServiceService {
             password: password,
         }
 
-        this.http.post<{ token: string, expiresIn: number}>('http://localhost:3000/apis/users/login', userDataToLogin)
+        console.log("This is backend URL: ", this.backendUrl);
+        this.http.post<{ token: string, expiresIn: number}>(`${this.backendUrl}/apis/users/login`, userDataToLogin)
             .subscribe({
                 next: (response) =>{
 
