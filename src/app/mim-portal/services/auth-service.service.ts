@@ -19,11 +19,15 @@ export class AuthServiceService {
     public authStatusListener = new Subject<boolean>();
     private jwtHelper = new JwtHelperService();
 
-    headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-    });
+    httpOptions = {
+        withCredentials: true,
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        })
+    }
+
 
   constructor(
       private http: HttpClient,
@@ -56,7 +60,7 @@ export class AuthServiceService {
             password: password,
         }
 
-        this.http.post<{ message: string }>(`${this.backendUrl}/apis/users/signup`, newUserData, {headers: this.headers})
+        this.http.post<{ message: string }>(`${this.backendUrl}/apis/users/signup`, newUserData, this.httpOptions)
             .subscribe({
                 next: (response) =>{
                     return response;
@@ -76,11 +80,11 @@ export class AuthServiceService {
             password: password,
         }
 
-        console.log("Headers for login: ,", this.headers);
+        console.log("Headers for login: ,", this.httpOptions);
 
 
         console.log("This is backend URL: ", this.backendUrl);
-        this.http.post<{ token: string, expiresIn: number}>(`${this.backendUrl}/apis/users/login`, userDataToLogin, {headers: this.headers})
+        this.http.post<{ token: string, expiresIn: number}>(`${this.backendUrl}/apis/users/login`, userDataToLogin, this.httpOptions)
             .subscribe({
                 next: (response) =>{
 

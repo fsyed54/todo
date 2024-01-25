@@ -12,11 +12,15 @@ export class InterviewServicesService {
     backendUrl = environment.baseUrl;
     private selectedInterview: string = '';
 
-    headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-    });
+    httpOptions = {
+        withCredentials: true,
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        })
+    }
+
 
     constructor(private http: HttpClient) { }
 
@@ -29,11 +33,11 @@ export class InterviewServicesService {
     }
 
     getListOfAllInterviews(){
-        return this.http.get<Interviews[]>(`${this.backendUrl}/apis/interviews`, {headers: this.headers});
+        return this.http.get<Interviews[]>(`${this.backendUrl}/apis/interviews`, this.httpOptions);
     }
 
     getInterviewDetails(interviewId: string) {
-        const response = this.http.get<Interviews>(`${this.backendUrl}/apis/interviews/${interviewId}`, {headers:this.headers});
+        const response = this.http.get<Interviews>(`${this.backendUrl}/apis/interviews/${interviewId}`, this.httpOptions);
         return response;
     }
 
@@ -71,7 +75,7 @@ export class InterviewServicesService {
 
         console.log("New interview object: ",newInterviewObject);
 
-        return this.http.post<Interviews>(`${this.backendUrl}/apis/interviews/interview`, newInterviewObject, {headers: this.headers});
+        return this.http.post<Interviews>(`${this.backendUrl}/apis/interviews/interview`, newInterviewObject, this.httpOptions);
     }
 
     updateCurrentInterview(iCreateInterviewFromData: any){
@@ -108,6 +112,6 @@ export class InterviewServicesService {
             "interviewStatus": iCreateInterviewFromData.i_final_result
         }
 
-        return this.http.put<Interviews>(`${this.backendUrl}/apis/interviews/${iCreateInterviewFromData._id}`, newInterviewObjectToUpdate, {headers: this.headers});
+        return this.http.put<Interviews>(`${this.backendUrl}/apis/interviews/${iCreateInterviewFromData._id}`, newInterviewObjectToUpdate, this.httpOptions);
     }
 }
