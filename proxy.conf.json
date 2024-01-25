@@ -1,5 +1,5 @@
 {
-    "/*": {
+    "/apis": {
         "target": "https://imp-bk.vercel.app",
         "secure": false,
         "logLevel": "debug",
