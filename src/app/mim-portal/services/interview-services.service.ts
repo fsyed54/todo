@@ -15,7 +15,7 @@ export class InterviewServicesService {
     headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Access-Control-Allow-Origin': 'https://imp-bk.vercel.app',
+        'Access-Control-Allow-Origin': '*',
     });
 
     constructor(private http: HttpClient) { }
