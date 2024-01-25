@@ -20,7 +20,7 @@ export class AuthServiceService {
     private jwtHelper = new JwtHelperService();
 
     httpOptions = {
-        withCredentials: true,
+        withCredentials: false,
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Accept': 'application/json',

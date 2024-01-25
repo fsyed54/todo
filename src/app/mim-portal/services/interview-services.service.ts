@@ -13,7 +13,7 @@ export class InterviewServicesService {
     private selectedInterview: string = '';
 
     httpOptions = {
-        withCredentials: true,
+        withCredentials: false,
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -80,10 +80,6 @@ export class InterviewServicesService {
 
     updateCurrentInterview(iCreateInterviewFromData: any){
        console.log("This is the data to service from update form: ", iCreateInterviewFromData);
-
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-        });
 
         const newInterviewObjectToUpdate = {
             "dateOfInterview": iCreateInterviewFromData.i_doi,
