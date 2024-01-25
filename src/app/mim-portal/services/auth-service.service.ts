@@ -20,11 +20,11 @@ export class AuthServiceService {
     private jwtHelper = new JwtHelperService();
 
     httpOptions = {
-        withCredentials: false,
+        withCredentials: true,
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': 'https://imp-bk.vercel.app/',
         })
     }
 
