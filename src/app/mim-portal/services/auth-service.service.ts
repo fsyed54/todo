@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {UserData} from "../models/user-data";
 import {UserLoginData} from "../models/user-login-data";
@@ -13,12 +13,16 @@ import { environment} from "../environments/environment";
 export class AuthServiceService {
 
     backendUrl = environment.baseUrl;
-
     private tokenTimer: any;
     private isAuthenticated = false;
     private token: string | undefined;
     public authStatusListener = new Subject<boolean>();
     private jwtHelper = new JwtHelperService();
+
+    headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    });
 
   constructor(
       private http: HttpClient,
@@ -71,8 +75,11 @@ export class AuthServiceService {
             password: password,
         }
 
+        console.log("Headers for login: ,", this.headers);
+
+
         console.log("This is backend URL: ", this.backendUrl);
-        this.http.post<{ token: string, expiresIn: number}>(`${this.backendUrl}/apis/users/login`, userDataToLogin)
+        this.http.post<{ token: string, expiresIn: number}>(`${this.backendUrl}/apis/users/login`, userDataToLogin, {headers: this.headers})
             .subscribe({
                 next: (response) =>{
 
