@@ -21,7 +21,8 @@ export class AuthServiceService {
 
     headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': 'https://imp-bk.vercel.app',
     });
 
   constructor(
@@ -55,7 +56,7 @@ export class AuthServiceService {
             password: password,
         }
 
-        this.http.post<{ message: string }>(`${this.backendUrl}/apis/users/signup`, newUserData)
+        this.http.post<{ message: string }>(`${this.backendUrl}/apis/users/signup`, newUserData, {headers: this.headers})
             .subscribe({
                 next: (response) =>{
                     return response;
