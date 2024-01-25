@@ -29,9 +29,9 @@ export class AuthServiceService {
             'Access-Control-Allow-Credentials': 'true',
             'Access-Control-Max-Age': '86400',
             'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-        })
+        }),
+        credentials: true
     }
-
 
 
   constructor(
@@ -78,6 +78,10 @@ export class AuthServiceService {
                 }
             });
     }
+
+
+
+
     login(email: string, password: string){
 
         const userDataToLogin: UserLoginData = {
@@ -116,7 +120,7 @@ export class AuthServiceService {
                     }
                 },
                     error: (error) => {
-                    console.error("Error while creating new user", error)
+                    console.error("Error while logging in", error.message)
                 },
                     complete: () => {
 

@@ -23,7 +23,8 @@ export class InterviewServicesService {
             'Access-Control-Allow-Credentials': 'true',
             'Access-Control-Max-Age': '86400',
             'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-        })
+        }),
+        credentials: true
     }
 
 
