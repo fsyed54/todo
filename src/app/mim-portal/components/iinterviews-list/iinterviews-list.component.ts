@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { InterviewServicesService } from "../../services/interview-services.service";
 import { Interviews } from "../../models/interviews";
 import { Router } from "@angular/router";
 import {MessageService} from "primeng/api";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-iinterviews-list',
@@ -16,6 +16,9 @@ export class IinterviewsListComponent implements OnInit {
     loading: boolean = false;
     display: boolean = false;
     createdBy: string = "Bhanu Kandregula";
+    dropdownControl: FormControl = new FormControl();
+    dropdownInterviewResults = [{name: 'Selected'}, {name: 'Not Selected'}, {name: 'In Hold'}, {name: 'Schedule Another Round'} ];
+    selectedInterviewResult: any = null;
 
   constructor(
       public interviewService: InterviewServicesService,
@@ -58,7 +61,10 @@ export class IinterviewsListComponent implements OnInit {
 
     // Interview Outcomes
     i_top_three_skills  = new FormControl('', {validators: []});
-    i_final_result  = new FormControl('', {validators: []});
+    i_final_result = this.dropdownControl
+  //   i_final_result  = new FormControl('', {validators: []});
+
+
 
     iCreateUpdateForm = this.fb.group({
         c_firstname: this.c_firstname,
@@ -84,7 +90,7 @@ export class IinterviewsListComponent implements OnInit {
         i_linux_devops_skills_rating: this.i_linux_devops_rating,
         i_candidate_business_knowledge_rating: this.i_candidate_business_knowledge_rating,
         i_top_three_skills: this.i_top_three_skills,
-        i_final_result: this.i_final_result
+        i_final_result: this.i_final_result[0]
     });
 
   ngOnInit() {
@@ -167,7 +173,9 @@ showSuccessToastAndRoute() {
 }
 
 onClickSave(){
+      console.log("This is the form value for final result: ", this.i_final_result.value)
     this.showSuccessToastAndRoute();
+
     if (this.iCreateUpdateForm.valid) {
         console.log('Form submitted:', this.iCreateUpdateForm.value);
 
@@ -193,4 +201,15 @@ onClickSave(){
     }
 }
 
+    // @ts-ignore
+    getSeverity(status: string) {
+        switch (status) {
+            case 'Selected':
+                return 'success';
+            case 'Not Selected':
+                return 'danger';
+            case 'In Hold':
+                return 'warning';
+        }
+    }
 }

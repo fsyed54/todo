@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthServiceService} from "../../services/auth-service.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-ilanding-page',
@@ -8,8 +9,9 @@ import { AuthServiceService} from "../../services/auth-service.service";
   styleUrls: ['./ilanding-page.component.scss']
 })
 export class IlandingPageComponent implements OnInit {
+    private loading: boolean = false;
 
-  constructor(private authService: AuthServiceService) { }
+  constructor(public authService: AuthServiceService, private messageService: MessageService,) { }
 
     isSignInFormVisible = false;
     isSignUpFormVisible = false;
@@ -25,9 +27,12 @@ export class IlandingPageComponent implements OnInit {
         this.isSignInFormVisible = !this.isSignInFormVisible;
     }
 
-
-
     ngOnInit(): void {}
+
+    showSuccessToastAndRoute() {
+        console.log("This is frm show toast: ", this.authService.incorrectPassword );
+
+    }
 
 
     onLogin(form: NgForm){
@@ -36,6 +41,25 @@ export class IlandingPageComponent implements OnInit {
             return;
         }
         this.authService.login(form.value.signin_email, form.value.signin_password);
+
+        if(!this.authService.incorrectPassword){
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Incorrect password.',
+                detail: 'Please re-enter your credentials.',
+                life: 3000
+            });
+            this.authService.incorrectPassword = false;
+        }
+
+        if(this.authService.incorrectPassword){
+            this.messageService.add({
+                severity: 'success',
+                summary: 'Logged in successfully.',
+                detail: 'You have successfully logged In.',
+                life: 3000
+            });
+        }
     }
 
     onSignup(form: NgForm) {

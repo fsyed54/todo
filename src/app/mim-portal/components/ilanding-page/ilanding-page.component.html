@@ -10,7 +10,6 @@
                     <p class="mt-0 mb-4 text-700 line-height-3">
                         This application will help you to track and manage your interviews. <br> Being a interviewer this portal will be a one stop for all your candidate status and feedback presented.
                     </p>
-
                 </section>
             </div>
 
@@ -26,67 +25,84 @@
                         </div>
 
                         <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
-
                             <div>
                                 <div class="formgrid grid">
                                     <div class="field col">
                                         <label for="signin_email">Email ID</label>
                                         <input
                                             id="signin_email"
-                                            name="signin_email"
-                                            type="text"
+                                            type="email"
                                             #emailInput="ngModel"
                                             class="text-base
-                                text-color
-                                surface-overlay
-                                p-2 border-1
-                                border-solid
-                                surface-border
-                                border-round
-                                appearance-none
-                                outline-none
-                                focus:border-primary
-                                w-full"
+                                            text-color
+                                            surface-overlay
+                                            p-2 border-1
+                                            border-solid
+                                            surface-border
+                                            border-round
+                                            appearance-none
+                                            outline-none
+                                            focus:border-primary
+                                            w-full"
                                             pInputText
                                             required
                                             ngModel
+                                            name="signin_email"
+                                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                                         >
+
+                                        <!-- Validation message for email format -->
+                                        <div *ngIf="emailInput.invalid && emailInput.errors?.email">
+                                            <small>Email must be a valid email address.</small>
+                                        </div>
+
+                                        <!-- Validation message for required -->
+                                        <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+                                            <small *ngIf="emailInput.errors?.required">Email is required.</small>
+                                            <small *ngIf="emailInput.errors?.pattern">Please enter a valid email address.</small>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="formgrid grid">
+
                                     <div class="field col">
                                         <label for="signin_password">Password</label>
                                         <input
                                             id="signin_password"
-                                            name="signin_password"
                                             type="password"
                                             #passwordInput="ngModel"
                                             class="text-base
-                                text-color
-                                surface-overlay
-                                p-2 border-1
-                                border-solid
-                                surface-border
-                                border-round
-                                appearance-none
-                                outline-none
-                                focus:border-primary
-                                w-full"
+                                            text-color
+                                            surface-overlay
+                                            p-2 border-1
+                                            border-solid
+                                            surface-border
+                                            border-round
+                                            appearance-none
+                                            outline-none
+                                            focus:border-primary
+                                            w-full"
                                             pInputText
                                             required
                                             ngModel
+                                            name="signin_password"
                                         >
+                                        <!-- Validation message for required -->
+                                        <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
+                                            <small *ngIf="passwordInput.errors?.required">Password is required.</small>
+                                        </div>
                                     </div>
                                 </div>
+
 
                                 <div class="flex align-items-center justify-content-between mb-6">
                                     <div class="flex align-items-center">
                                         <p-checkbox id="remember" [binary]="true" styleClass="mr-2"></p-checkbox>
                                         <label for="remember" class="text-900">Remember me</label>
                                     </div>
-                                    <!-- <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a> -->
                                 </div>
+
 
                                 <button
                                     type="submit"
@@ -94,10 +110,85 @@
                                     pRipple
                                     label="Login"
                                     icon="pi pi-user"
-                                    class="w-full">
+                                    class="w-full"
+                                    [disabled]="loginForm.invalid"
+                                >
                                 </button>
                             </div>
                         </form>
+
+
+                        <!--                        <form (submit)="onLogin(loginForm)" #loginForm="ngForm">-->
+
+<!--                            <div>-->
+<!--                                <div class="formgrid grid">-->
+<!--                                    <div class="field col">-->
+<!--                                        <label for="signin_email">Email ID</label>-->
+<!--                                        <input-->
+<!--                                            id="signin_email"-->
+<!--                                            type="text"-->
+<!--                                            #emailInput="ngModel"-->
+<!--                                            class="text-base-->
+<!--                                            text-color-->
+<!--                                            surface-overlay-->
+<!--                                            p-2 border-1-->
+<!--                                            border-solid-->
+<!--                                            surface-border-->
+<!--                                            border-round-->
+<!--                                            appearance-none-->
+<!--                                            outline-none-->
+<!--                                            focus:border-primary-->
+<!--                                            w-full"-->
+<!--                                            pInputText-->
+<!--                                            required-->
+<!--                                            ngModel-->
+<!--                                        >-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="formgrid grid">-->
+<!--                                    <div class="field col">-->
+<!--                                        <label for="signin_password">Password</label>-->
+<!--                                        <input-->
+<!--                                            id="signin_password"-->
+<!--                                            type="password"-->
+<!--                                            #passwordInput="ngModel"-->
+<!--                                            class="text-base-->
+<!--                                            text-color-->
+<!--                                            surface-overlay-->
+<!--                                            p-2 border-1-->
+<!--                                            border-solid-->
+<!--                                            surface-border-->
+<!--                                            border-round-->
+<!--                                            appearance-none-->
+<!--                                            outline-none-->
+<!--                                            focus:border-primary-->
+<!--                                            w-full"-->
+<!--                                            pInputText-->
+<!--                                            required-->
+<!--                                            ngModel-->
+<!--                                        >-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="flex align-items-center justify-content-between mb-6">-->
+<!--                                    <div class="flex align-items-center">-->
+<!--                                        <p-checkbox id="remember" [binary]="true" styleClass="mr-2"></p-checkbox>-->
+<!--                                        <label for="remember" class="text-900">Remember me</label>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash; <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a> &ndash;&gt;-->
+<!--                                </div>-->
+
+<!--                                <button-->
+<!--                                    type="submit"-->
+<!--                                    pButton-->
+<!--                                    pRipple-->
+<!--                                    label="Login"-->
+<!--                                    icon="pi pi-user"-->
+<!--                                    class="w-full">-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </form>-->
                     </div>
                 </div>
 
@@ -294,7 +385,7 @@
 </div>
 
 
-
+<p-toast></p-toast>
 
 
 

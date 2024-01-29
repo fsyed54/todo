@@ -18,24 +18,19 @@ export class AuthServiceService {
     private token: string | undefined;
     public authStatusListener = new Subject<boolean>();
     private jwtHelper = new JwtHelperService();
+    incorrectPassword: boolean = false;
 
     httpOptions = {
         // withCredentials: true,
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin': this.backendUrl,
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-CSRF-Token, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version',
-            'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Max-Age': '86400',
-            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+            'Accept': 'application/json'
         }),
     }
 
 
-  constructor(
-      private http: HttpClient,
-      private router: Router) { }
+
+  constructor( private http: HttpClient, private router: Router) { }
 
     getToken(){
         return this.token;
@@ -50,11 +45,7 @@ export class AuthServiceService {
         return this.authStatusListener.asObservable();
     }
 
-    createUser(firstname: string,
-        lastname: string,
-        email: string,
-        mobile: string,
-        password: string){
+    createUser(firstname: string, lastname: string, email: string, mobile: string, password: string){
 
         const newUserData: UserData = {
             firstname: firstname,
@@ -78,9 +69,6 @@ export class AuthServiceService {
             });
     }
 
-
-
-
     login(email: string, password: string){
 
         const userDataToLogin: UserLoginData = {
@@ -88,11 +76,7 @@ export class AuthServiceService {
             password: password,
         }
 
-        console.log("Headers for login: ,", this.httpOptions);
-
-
-        console.log("This is backend URL: ", this.backendUrl);
-        this.http.post<{ token: string, expiresIn: number}>(`${this.backendUrl}/apis/users/login`, userDataToLogin, this.httpOptions)
+         this.http.post<{ token: string, expiresIn: number}>(`${this.backendUrl}/apis/users/login-user`, userDataToLogin, this.httpOptions)
             .subscribe({
                 next: (response) =>{
 
@@ -119,7 +103,12 @@ export class AuthServiceService {
                     }
                 },
                     error: (error) => {
-                    console.error("Error while logging in", error.message)
+                        console.error("Error while logging in: ", error.message)
+                        if(error.status === 401){
+                            this.incorrectPassword = true;
+                        }else{
+                            console.error("Other error: ", error.message)
+                        }
                 },
                     complete: () => {
 

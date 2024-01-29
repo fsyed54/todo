@@ -4,7 +4,8 @@
 
 export const environment = {
     production: false,
-    baseUrl: "https://imp-bk.vercel.app"
+    // baseUrl : "https://us-central1-mim-node-apis.cloudfunctions.net/api"
+    baseUrl : "http://localhost:80"
 };
 /*
  * In development mode, to ignore zone related error stack frames such as
