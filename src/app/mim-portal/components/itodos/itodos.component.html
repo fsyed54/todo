@@ -1,1 +1,112 @@
-<p>itodos works!</p>
+<div class="card">
+    <p-tabView (onChange)="onTabChange($event)">
+        <p-tabPanel header="ACTIVE">
+            <div style="display: flex; align-items: center;">
+                <span class="p-float-label custom-input" style="margin-top: 20px;">
+                    <input type="text" id="inputtext" pInputText="" [(ngModel)]="newTodoText"
+                        class="p-inputtext p-component p-element ng-pristine ng-valid ng-touched custom-input">
+                    <label for="inputtext">Enter To-Do</label>
+                </span>
+
+                <button pbutton="" pripple="" label="Add" class="p-element p-ripple p-button p-component custom-button"
+                    [disabled]="!newTodoText.trim()" (click)="addTodo()">
+                    <span class="p-button-label">Add</span>
+                    <span class="p-ink"></span>
+                </button>
+            </div>
+            <br>
+            <div class="col-12">
+                <div *ngFor="let startDate of groupedTasks | keyvalue">
+                    <div class="card">
+                        <h5>Date: {{ startDate.key }}</h5>
+                        <p-table [value]="startDate.value" sortMode="single" responsiveLayout="scroll"
+                            [scrollable]="true" scrollHeight="400px">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>#</th>
+                                    <th>To-Do</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-todo let-i="rowIndex">
+                                <tr>
+                                    <td style="min-width: 200px;">
+                                        {{ i+1 }}
+                                    </td>
+                                    <td style="min-width: 200px;">
+                                        {{ todo.task }}
+                                    </td>
+                                    <td style="min-width: 200px;">
+                                        <p-dropdown [options]="statusOptions" placeholder="Select Status"
+                                            optionLabel="label" [ngModel]="setSelectedStatus(todo.status)"
+                                            [trackBy]="trackByValue" class="custom-dropdown">
+                                        </p-dropdown>
+                                    </td>
+                                    <td style="min-width: 200px;">
+                                        <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
+                                            (click)="toggleMenu(i,startDate.key)"
+                                            class="ellipsisstyle mr-3 p-element p-ripple p-button-rounded p-button-text p-button-secondary p-button p-component p-button-icon-only"></button>
+                                        <!-- <p-menu #menuArray [popup]="true" [model]="actionsArray"
+                                            [ngStyle]="{'position': 'relative', 'left.px': menuLeft, 'top.px': menuTop}"></p-menu> -->
+                                        <div class="menu-content" *ngIf="this.groupedTasks[startDate.key][i]?.isOpen">
+                                            <a href="#" class="menu-item">Edit</a>
+                                            <a href="#" class="menu-item">Delete</a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+
+            </div>
+        </p-tabPanel>
+
+        <p-tabPanel header="COMPLETED">
+            <div class="col-12">
+                <div class="card">
+                    <p-table [value]="todos" rowGroupMode="subheader" groupRowsBy="representative.name"
+                        sortField="representative.name" sortMode="single" responsiveLayout="scroll" [scrollable]="true"
+                        scrollHeight="400px">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>To-Do</th>
+                                <th>Start Date</th>
+                                <th>Completed Date</th>
+                                <th>Status Display</th>
+                                <th>Action</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-todo>
+                            <tr>
+                                <td style="min-width: 200px;">
+                                    {{ todo.task }}
+                                </td>
+                                <td style="min-width: 200px;">
+                                    {{ todo.start_date}}
+                                </td>
+                                <td style="min-width: 200px;">
+                                    {{ todo.end_date}}
+                                </td>
+                                <td style="min-width: 200px;">
+                                    {{ todo.status}}
+                                </td>
+                                <td style="min-width: 200px;">
+                                    <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
+                                        (click)="toggleMenu(i,startDate.key)"
+                                        class="ellipsisstyle mr-3 p-element p-ripple p-button-rounded p-button-text p-button-secondary p-button p-component p-button-icon-only"></button>
+                                    <div class="menu-content" *ngIf="isOpen">
+                                        <a href="#" class="menu-item">Edit</a>
+                                        <a href="#" class="menu-item">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+</div>

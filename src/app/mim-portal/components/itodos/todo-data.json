@@ -1,0 +1,50 @@
+[
+    {
+        "start_date": "2024-02-01",
+        "end_date": "2024-02-15",
+        "status": "In Progress",
+        "task": "Front-end UI Design"
+    },
+    {
+        "start_date": "2024-03-01",
+        "end_date": "2024-03-10",
+        "status": "Completed",
+        "task": "Backend Integration"
+    },
+    {
+        "start_date": "2024-04-01",
+        "end_date": "2024-05-01",
+        "status": "Not Used Anymore",
+        "task": "Feature X Development"
+    },
+    {
+        "start_date": "2024-06-01",
+        "end_date": "2024-06-15",
+        "status": "In Hold",
+        "task": "Bug Fixing"
+    },
+    {
+        "start_date": "2024-02-01",
+        "end_date": "2024-02-15",
+        "status": "In Progress",
+        "task": "Front-end UI Design"
+    },
+    {
+        "start_date": "2024-03-01",
+        "end_date": "2024-03-10",
+        "status": "Completed",
+        "task": "Backend Integration"
+    },
+    {
+        "start_date": "2024-04-01",
+        "end_date": "2024-05-01",
+        "status": "Not Used Anymore",
+        "task": "Feature X Development"
+    },
+    {
+        "start_date": "2024-06-01",
+        "end_date": "2024-06-15",
+        "status": "In Hold",
+        "task": "Bug Fixing"
+    }
+]

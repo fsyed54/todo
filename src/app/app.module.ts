@@ -164,6 +164,7 @@ import {IinterceptorInterceptor} from "./mim-portal/interceptors/iinterceptor.in
 import {MessageService} from "primeng/api";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 
+
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -259,7 +260,13 @@ FullCalendarModule.registerPlugins([
         VirtualScrollerModule,
         AppCodeModule,
         ReactiveFormsModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        ButtonModule,
+        PanelModule,
+        RippleModule,
+        InputTextModule,
+        CardModule,
+        TableModule,
     ],
     declarations: [
         AppComponent,

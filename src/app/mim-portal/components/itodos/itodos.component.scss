@@ -1,0 +1,47 @@
+.custom-input {
+    width: 100%;
+    height: 40px;
+}
+
+.custom-button {
+    margin-left: 5px;
+    margin-top: 17px;
+    height: 40px;
+    width: 65px;
+}
+
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-content {
+    display: block;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-left: 20px;
+    margin-top: 93px;
+}
+
+
+.menu-item {
+    padding: 12px 16px;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.menu-item:hover {
+    background-color: #ddd;
+}
+
+:host ::ng-deep .p-dropdown {
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    width: 160px !important;
+}
